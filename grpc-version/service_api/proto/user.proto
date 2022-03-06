@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+message User {
+    string id = 1;
+    string userName = 2;
+    int64 accountNumber = 3;
+    string emailAddress = 4;
+    int64 identityNumber = 5;
+}
+
+service UserServices {
+    rpc GetAllUser (Empty) returns (UserList) {}
+    rpc LoginUser (User) returns (UserList) {}
+    rpc AddUserData(User)returns (User) {}
+    rpc DeleteUserData(User)returns (result){}
+    rpc EditUserData(User)returns (result){}
+    rpc GetUserByIdentifyNumber(User)returns (UserList){}
+}
+
+message Empty {}
+
+message UserList {
+   repeated User user = 1;
+}
+message UserDetail {
+   User message = 1;
+}
+
+message result {
+  bool status = 1;
+}

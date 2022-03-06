@@ -1,0 +1,42 @@
+# fly.toml file generated for red-waterfall-1391 on 2022-03-06T07:02:39+07:00
+
+app = "red-waterfall-1391"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  builder = "heroku/buildpacks:20"
+
+[env]
+  PORT = "8080"
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 54321
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    handlers = ["tls"]
+    port = 443
+
+    [services.ports.tls_options]
+      alpn = ["h2"]
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

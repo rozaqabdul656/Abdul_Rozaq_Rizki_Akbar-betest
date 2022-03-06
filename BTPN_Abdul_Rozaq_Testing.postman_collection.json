@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "f973b951-8455-4982-8073-72220a1cee55",
+		"name": "BTPN_Abdul_Rozaq_Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get All Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/getdatauser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getdatauser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Data User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"testingadd@gmail.com\",\r\n    \"username\": \"rozaqkuy\",\r\n    \"accountNumber\": 123,\r\n    \"identify_number\": 123\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/adddatauser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"adddatauser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"6224f7ae7b55673bcc679e41\",\r\n    \"email\": \"updates@gmail.com\",\r\n    \"username\": \"abdul\",\r\n    \"accountNumber\": 556,\r\n    \"identify_number\": 556\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/editdatausers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"editdatausers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Data User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"622508c1a0ced6453ecb30dd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/deleteuser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"deleteuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Data By Identify Number",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"identify_number\": 556\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/getbyidentify-number",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getbyidentify-number"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"accessToken\", data.token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ping",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "asdasd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"ping"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"accessToken\", data.token);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "secret-api-key",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"6224fb93633abb70619592d5\",\r\n    \"email\": \"rozaqabduledit11@gmail.com\",\r\n    \"username\": \"rozaqabdul\",\r\n    \"accountNumber\": 11111,\r\n    \"identify_number\": 111\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/update-data-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"update-data-user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
